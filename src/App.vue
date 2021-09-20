@@ -1,4 +1,3 @@
-container
 <template>
   <div class="text">
     Formel 1<br />
@@ -19,6 +18,8 @@ container
     <input
       class="text-input"
       type="number"
+      min="1950"
+      max="2021"
       v-model="name"
       placeholder="Suche"
     />
@@ -46,7 +47,6 @@ container
         dataDriver.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]
           .points
       }}</strong>
-      Punkten
     </li>
   </ul>
 </template>
@@ -77,11 +77,6 @@ export default {
           .then((response) => response.json())
           .then((dataDriver) => {
             stateDrive.dataDriver = dataDriver;
-            console.log(
-              "data",
-              dataDriver.MRData.StandingsTable.StandingsLists[0]
-                .DriverStandings[0].Driver.code
-            );
             name.value = "";
           });
     });
@@ -157,5 +152,3 @@ p {
 }
 </style>
 
-/* https://api.github.com/users/${newName.value}/repos
-https://ergast.com/api/f1/${newName.value}/driverStandings.json */
